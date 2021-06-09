@@ -72,15 +72,21 @@ describe('reduce', () => {
 });
 
 describe('every', () => {
-  it('eturns an overall true value if all callback return true or a truthy value', () => {
+  it('returns an overall true value if all callback return true or a truthy value', () => {
 
     const array1 = [1, 30, 39, 29, 10, 13];
+    const array2 = [1, ,, 39, ,, ,, 13];
+
 
     const everyTrueResult = every(array1, item => { return item < 40; });
     const everyFalseResult = every(array1, item => { return item < 10; });
+    const everyTrueEmptyResult = every(array2, item => { return item < 40; });
+
 
     expect(everyTrueResult).toEqual(true);
     expect(everyFalseResult).toEqual(false);
+    expect(everyTrueEmptyResult).toEqual(true);
+
 
   });
 });
