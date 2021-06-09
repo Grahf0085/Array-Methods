@@ -4,7 +4,9 @@ export function map(arr, callback) {
 
   for(let i = 0; i < arr.length; i++) {
 
-    newArray[i] = callback(arr[i]);
+    if(!(arr.hasOwnProperty(i))) newArray[i] = undefined;
+
+    if(arr.hasOwnProperty(i)) newArray[i] = callback(arr[i]);
     
   }
 

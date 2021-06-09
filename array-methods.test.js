@@ -4,11 +4,14 @@ describe('map', () => {
   it('Takes an Array and callback of signature item => {} and creates a new Array with the return value of each called callback', () => {
 
     const numberArray = [1, 4, 9, 16, 0];
+    const holyArray = [1, ,, 9, ,, 0];
 
     const doubledArray = map(numberArray, item => { return item * 2; });
+    const mapHolyArray = map(holyArray, item => { return item * 2;  });
     
     expect(doubledArray).toEqual([2, 8, 18, 32, 0]);
     expect(doubledArray.length).toEqual(numberArray.length);
+    expect(mapHolyArray).toEqual([2, ,, 18, ,, 0]);
 
   });
 });
@@ -61,7 +64,7 @@ describe('every', () => {
     const array1 = [1, 30, 39, 29, 10, 13];
 
     const everyTrueResult = every(array1, item => { return item < 40; });
-    const everyFalseResult = every(array1, item => { item < 10; });
+    const everyFalseResult = every(array1, item => { return item < 10; });
 
     expect(everyTrueResult).toEqual(true);
     expect(everyFalseResult).toEqual(false);
