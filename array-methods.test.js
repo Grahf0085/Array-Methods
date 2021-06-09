@@ -1,4 +1,4 @@
-import { map, filter, findIndex, reduce } from './array-methods';
+import { map, filter, findIndex, reduce, every } from './array-methods';
 
 describe('map', () => {
   it('Takes an Array and callback of signature item => {} and creates a new Array with the return value of each called callback', () => {
@@ -51,6 +51,20 @@ describe('reduce', () => {
 
     expect(totalLength).toEqual(20);
     expect(totalLengthTwo).toEqual(22);
+
+  });
+});
+
+describe('every', () => {
+  it('eturns an overall true value if all callback return true or a truthy value', () => {
+
+    const array1 = [1, 30, 39, 29, 10, 13];
+
+    const everyTrueResult = every(array1, item => { item < 40; });
+    const everyFalseResult = every(array1, item => { item < 10; });
+
+    expect(everyTrueResult).toEqual(true);
+    expect(everyFalseResult).toEqual(false);
 
   });
 });

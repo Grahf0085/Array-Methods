@@ -63,3 +63,9 @@ export function reduce(arr, callback, initialValue) {
   return total;
 
 }
+
+export function every(arr, callback) {
+
+  
+
+}
