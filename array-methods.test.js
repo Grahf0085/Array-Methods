@@ -60,7 +60,7 @@ describe('every', () => {
 
     const array1 = [1, 30, 39, 29, 10, 13];
 
-    const everyTrueResult = every(array1, item => { item < 40; });
+    const everyTrueResult = every(array1, item => { return item < 40; });
     const everyFalseResult = every(array1, item => { item < 10; });
 
     expect(everyTrueResult).toEqual(true);

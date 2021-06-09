@@ -66,6 +66,13 @@ export function reduce(arr, callback, initialValue) {
 
 export function every(arr, callback) {
 
-  
+  let running = 0;
 
+  for(let i = 0; i < arr.length; i++) {
+    if(callback(arr[i])) running++;
+  }
+
+  if(running === arr.length) return true;
+
+  else return false;
 }
