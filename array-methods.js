@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 export function map(arr, callback) {
 
   const newArray = [];
@@ -21,10 +22,19 @@ export function filter(arr, callback) {
 
   for(let i = 0; i < arr.length; i++) {
 
-    if(callback(arr[i])) {
+    if(!(arr.hasOwnProperty(i))) {
+
+      newArray[y] = undefined;
+      y++;
+
+    } 
+
+    else if((callback(arr[i]))) {
+
       newArray[y] = callback(arr[i]);
       y++;
-    }
+
+    } 
 
   }
 

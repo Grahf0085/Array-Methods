@@ -1,3 +1,4 @@
+/* eslint-disable no-sparse-arrays */
 import { map, filter, findIndex, reduce, every } from './array-methods';
 
 describe('map', () => {
@@ -12,6 +13,8 @@ describe('map', () => {
     expect(doubledArray).toEqual([2, 8, 18, 32, 0]);
     expect(doubledArray.length).toEqual(numberArray.length);
     expect(mapHolyArray).toEqual([2, ,, 18, ,, 0]);
+    expect(holyArray.length).toEqual(mapHolyArray.length);
+
 
   });
 });
@@ -20,10 +23,14 @@ describe('filter', () => {
   it('Takes an Array and callback of signature item => {} and creates a new Array with all items whose callback returned true or a truthy value', () => {
 
     const wordsArray = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+    const holyArray = ['spray', ,, 'elite', ,, 'destruction', ,,];
 
     const filteredArray = filter(wordsArray, item => { if(item.length > 6) return item; });
+    const holyFilteredArray = filter(holyArray, item => { if(item.length > 6) return item; });
 
     expect(filteredArray).toEqual(['exuberant', 'destruction', 'present']);
+    // eslint-disable-next-line comma-spacing
+    expect(holyFilteredArray).toEqual([,, ,, 'destruction', ,,]); 
 
   });
 });
