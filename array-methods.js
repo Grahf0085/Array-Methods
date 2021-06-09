@@ -22,14 +22,7 @@ export function filter(arr, callback) {
 
   for(let i = 0; i < arr.length; i++) {
 
-    if(!(arr.hasOwnProperty(i))) {
-
-      newArray[y] = undefined;
-      y++;
-
-    } 
-
-    else if((callback(arr[i]))) {
+    if((arr.hasOwnProperty(i)) && (callback(arr[i]))) {
 
       newArray[y] = callback(arr[i]);
       y++;
@@ -46,9 +39,8 @@ export function findIndex(arr, callback) {
 
   for(let i = 0; i < arr.length; i++) {
 
-    if(callback(arr[i])) {
+    if((arr.hasOwnProperty(i)) && (callback(arr[i]))) {
       return i;
-
     }
   }
 
@@ -61,20 +53,22 @@ export function reduce(arr, callback, initialValue) {
   let total;
 
   for(let i = 0; i < arr.length; i++) {
-    
-    if(i === 0 && initialValue) total = callback(initialValue, arr[i]);
-    if(i > 0 && initialValue) total = callback(total, arr[i]);
-    if(i === 0 && !initialValue) {
-      total = callback(arr[i], arr[i + 1]);
-      i = 2;
+
+    if(arr.hasOwnProperty(i)) {
+
+      if(i === 0 && initialValue) total = callback(initialValue, arr[0]);
+      else if(i === 0 && !initialValue) total = arr[0];
+      else total = callback(total, arr[i]);
+      
     }
-    if(i > 0 && !initialValue) total = callback(total, arr[i]);
   
   }
 
   return total;
 
 }
+
+
 
 export function every(arr, callback) {
 
