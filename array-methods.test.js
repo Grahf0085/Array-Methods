@@ -1,4 +1,4 @@
-import { map, filter } from './array-methods';
+import { map, filter, findIndex } from './array-methods';
 
 describe('map', () => {
   it('Takes an Array and callback of signature item => {} and creates a new Array with the return value of each called callback', () => {
@@ -20,9 +20,22 @@ describe('filter', () => {
 
     const filteredArray = filter(wordsArray, item => { if(item.length > 6) return item; });
 
-    console.log(filteredArray);
-
     expect(filteredArray).toEqual(['exuberant', 'destruction', 'present']);
+
+  });
+});
+
+describe('findIndex', () => {
+  it('returns the index of the first item whose callback returns true or a truthy value', () => {
+
+    const array1 = [5, 12, 8, 130, 44];
+
+    const isLargeNumber = findIndex(array1, item => { if(item > 13) return item; });
+    const failArray = findIndex(array1, item => { if(item > 500) return item; });
+
+    expect(isLargeNumber).toEqual(3);
+    expect(failArray).toEqual(-1);
+
 
   });
 });
