@@ -36,9 +36,30 @@ export function findIndex(arr, callback) {
 
     if(callback(arr[i])) {
       return i;
+
     }
   }
 
   return -1;
+
+}
+
+export function reduce(arr, callback, initialValue) {
+
+  let total;
+
+  for(let i = 0; i < arr.length; i++) {
+    
+    if(i === 0 && initialValue) total = callback(initialValue, arr[i]);
+    if(i > 0 && initialValue) total = callback(total, arr[i]);
+    if(i === 0 && !initialValue) {
+      total = callback(arr[i], arr[i + 1]);
+      i = 2;
+    }
+    if(i > 0 && !initialValue) total = callback(total, arr[i]);
+  
+  }
+
+  return total;
 
 }

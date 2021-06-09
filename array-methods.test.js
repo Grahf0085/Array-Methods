@@ -1,4 +1,4 @@
-import { map, filter, findIndex } from './array-methods';
+import { map, filter, findIndex, reduce } from './array-methods';
 
 describe('map', () => {
   it('Takes an Array and callback of signature item => {} and creates a new Array with the return value of each called callback', () => {
@@ -40,3 +40,17 @@ describe('findIndex', () => {
   });
 });
 
+describe('reduce', () => {
+  it('After each function call, the return value is passed as the accumulator argument of the next function call. If the second initialValue parameter is not supplied, the first function call should be the first item as the accumulator, and the second array item as the item', () => {
+
+    const namesLength = [2, 5, 7, 3, 1, 2];
+
+    const totalLength = reduce(namesLength, (accumulator, item) => { return accumulator + item; }, 0);
+    const totalLengthTwo = reduce(namesLength, (accumulator, item) => { return accumulator + item; }, 2);
+
+
+    expect(totalLength).toEqual(20);
+    expect(totalLengthTwo).toEqual(22);
+
+  });
+});
